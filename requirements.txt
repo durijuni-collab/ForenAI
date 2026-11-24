@@ -1,2 +1,3 @@
+pyvbox
 pyvboxmanage
 streamlit
