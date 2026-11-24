@@ -1,3 +1,9 @@
+
 pyvbox
 pyvboxmanage
 streamlit
+
+# AI
+openai
+pydantic>=2,<3
+python-dotenv
