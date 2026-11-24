@@ -1,7 +1,8 @@
-
+from ai.scenario_validator import validate_scenario
 import os
 import json
 from pathlib import Path
+
 
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -224,6 +225,9 @@ def generate_scenario(objective, difficulty="easy"):
                 scenario,
                 difficulty
             )
+            # 상세 유효성 검사
+            scenario = validate_scenario(scenario)
+
 
             return scenario
 
