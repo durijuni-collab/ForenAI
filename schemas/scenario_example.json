@@ -1,0 +1,45 @@
+{
+    "case_title": "삭제된 문서 추적 사건",
+    "description": "업무 문서의 휴지통 이동 기록을 분석하는 사건",
+    "objective": "삭제된 파일의 이름과 이동 시각 확인",
+    "difficulty": "easy",
+    "actions": [
+        {
+            "id": 1,
+            "action": "create",
+            "path": "report.txt",
+            "content": "업무 보고서"
+        },
+        {
+            "id": 2,
+            "action": "create",
+            "path": "memo.txt",
+            "content": "업무 메모"
+        },
+        {
+            "id": 3,
+            "action": "create",
+            "path": "secret.txt",
+            "content": "내부 문서"
+        },
+        {
+            "id": 4,
+            "action": "recycle",
+            "path": "secret.txt"
+        }
+    ],
+    "questions": [
+        {
+            "id": 1,
+            "question": "휴지통으로 이동된 파일의 이름은?",
+            "answer_type": "filename",
+            "action_id": 4
+        },
+        {
+            "id": 2,
+            "question": "휴지통으로 이동된 시각은?",
+            "answer_type": "timestamp",
+            "action_id": 4
+        }
+    ]
+}
