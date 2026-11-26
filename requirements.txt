@@ -1,7 +1,13 @@
+#gui
+streamlit
 
+# vm
+virtualbox
+vbox-sdk
 pyvbox
 pyvboxmanage
-streamlit
+setuptools
+pywin32
 
 # AI
 openai
