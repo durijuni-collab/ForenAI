@@ -1,0 +1,19 @@
+{
+  "case_id": "mock_20261126011628",
+  "answers": [
+    {
+      "question_id": 1,
+      "answer_type": "filename",
+      "expected_value": "secret.txt",
+      "evidence_type": "recycle_bin",
+      "evidence_reference": "MOCK:$Recycle.Bin/(mock)"
+    },
+    {
+      "question_id": 2,
+      "answer_type": "timestamp",
+      "expected_value": "2026-11-26T01:16:28Z",
+      "evidence_type": "recycle_bin",
+      "evidence_reference": "MOCK:$Recycle.Bin/(mock)"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "case_id": "mock_20261126011628",
+  "case_title": "삭제된 문서 추적",
+  "description": "업무 문서의 휴지통 이동 기록을 분석하는 사건",
+  "objective": "삭제된 파일명",
+  "difficulty": "easy",
+  "questions": [
+    {
+      "id": 1,
+      "question": "휴지통으로 이동된 파일명은?"
+    },
+    {
+      "id": 2,
+      "question": "휴지통으로 이동된 시각은?"
+    }
+  ]
+}
