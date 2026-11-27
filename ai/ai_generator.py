@@ -4,6 +4,11 @@ import json
 import re
 from pathlib import Path
 
+from ai.difficulty_generator import (
+    build_difficulty_prompt,
+    validate_difficulty
+)
+
 from dotenv import load_dotenv
 
 from openai import (
@@ -310,6 +315,19 @@ def generate_scenario(objective, difficulty="easy"):
 
     system_prompt = load_prompt()
 
+    try:
+        difficulty_prompt = (
+            ROOT / "prompts" / "difficulty_prompt.md"
+        ).read_text(encoding="utf-8-sig")
+
+    except OSError as error:
+        raise AIConfigError(
+            "난이도별 프롬프트 파일을 확인해주세요."
+        ) from error
+
+    system_prompt += "\n\n" + difficulty_prompt
+    system_prompt += "\n\n" + build_difficulty_prompt(difficulty)
+
     user_prompt = (
         f"실습 목표: {objective}\n"
         f"난이도: {difficulty}\n\n"
@@ -367,6 +385,12 @@ def generate_scenario(objective, difficulty="easy"):
                     scenario
                 )
 
+                # 난이도별 생성 조건 검증
+                scenario = validate_difficulty(
+                    scenario,
+                    difficulty
+                )
+
                 return scenario
 
             except ValueError as error:
@@ -396,18 +420,39 @@ def generate_scenario(objective, difficulty="easy"):
     )
 
 
-# 터미널 실행용
+
 if __name__ == "__main__":
 
     print("===== ForenAI 사건 설계 시스템 =====")
 
     objective = input("\n실습 목표를 입력하세요: ")
 
+    print("\n난이도를 선택하세요.")
+    print("1. 초급 (easy)")
+    print("2. 중급 (medium)")
+    print("3. 고급 (hard)")
+
+    choice = input("\n난이도 선택: ").strip()
+
+    difficulty_map = {
+        "1": "easy",
+        "2": "medium",
+        "3": "hard"
+    }
+
+    if choice not in difficulty_map:
+        print("잘못된 난이도 선택입니다.")
+        raise SystemExit(1)
+
+    difficulty = difficulty_map[choice]
+
     try:
+
+        print("\nAI 사건 생성 중...")
 
         scenario = generate_scenario(
             objective,
-            difficulty="easy"
+            difficulty
         )
 
         print("\n===== AI 사건 설계 결과 =====")
@@ -420,10 +465,20 @@ if __name__ == "__main__":
             )
         )
 
+        file_count = sum(
+            action["action"] == "create"
+            for action in scenario["actions"]
+        )
+
+        print("\n===== 생성 결과 요약 =====")
+        print("난이도:", scenario["difficulty"])
+        print("생성 파일 수:", file_count)
+        print("전체 작업 수:", len(scenario["actions"]))
+        print("실습 문제 수:", len(scenario["questions"]))
+
         print("\nAI 사건 설계 성공!")
 
     except AIError as error:
 
         print(f"\n오류 발생: {error}")
-
         raise SystemExit(1)
