@@ -1,0 +1,13 @@
+{
+  "case_id": "case001",
+  "status": "success",
+  "results": [
+    {"action_id": 1, "action": "create", "filename": "report.txt", "path": "report.txt", "destination": null, "timestamp": null, "status": "success", "evidence_type": null, "evidence_reference": null},
+    {"action_id": 2, "action": "create", "filename": "memo.txt", "path": "memo.txt", "destination": null, "timestamp": null, "status": "success", "evidence_type": null, "evidence_reference": null},
+    {"action_id": 3, "action": "create", "filename": "secret.txt", "path": "secret.txt", "destination": null, "timestamp": null, "status": "success", "evidence_type": null, "evidence_reference": null},
+    {"action_id": 4, "action": "recycle", "filename": "secret.txt", "path": "secret.txt", "destination": null, "timestamp": "2026-11-24T09:30:15Z", "status": "success", "evidence_type": "recycle_bin", "evidence_reference": "$Recycle.Bin/.../$I..."}
+  ],
+  "evidence_path": "outputs/case001/evidence.raw",
+  "sha256": null,
+  "error": null
+}
