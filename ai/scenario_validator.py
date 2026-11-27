@@ -1,4 +1,4 @@
-
+from ai.question_validator import validate_question_references
 import re
 
 
@@ -379,5 +379,8 @@ def validate_scenario(scenario):
         scenario["questions"],
         action_ids
     )
+
+    # 실습 문제 참조 관계 검사
+    validate_question_references(scenario)
 
     return scenario
